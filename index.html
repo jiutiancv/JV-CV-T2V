@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Video Face Restoration">
+  <meta name="keywords" content="Autonomous driving, pedestrian crossing intention prediction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> High-quality Text-to-video Models </title>
+  <style>
+    .video-description {
+      font-size: 16px;
+      color: #333;
+      text-align: justify;
+      margin-top: 10px;
+    }
+  </style>
+  <style>
+    @keyframes shake {
+      0% {transform: translateX(0);}
+      10%, 90% {transform: translateX(-5px);}
+      20%, 80% {transform: translateX(5px);}
+      30%, 50%, 70% {transform: translateX(-5px);}
+      40%, 60% {transform: translateX(5px);}
+      100% {transform: translateX(0);}
+    }
+
+    #blur {
+      /* font-size: 60px; */
+      color: rgb(52,144,197);
+      filter: blur(3x);
+      -webkit-filter: blur(2.5px);
+      animation: shake 1s infinite;
+      display: inline-block;;
+      clear: none;
+    }
+    #shake {
+      /* font-size: 60px; */
+      animation: shake 1s infinite;
+      display: inline-block;;
+      clear: none;
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRQSXV0K5T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QRQSXV0K5T');
+  </script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" sizes="256x256" href="./static/image/apple.png" type="image/png"/>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <div class="title is-2 publication-title">
+            <h1 style="display: inline; clear:none;">
+                  <img src="./static/image/apple.png" width="40", height="40">
+                  <!-- <font color="#d91421"><b>Beyond Alignment:</b></font>  -->
+                  High-quality Text-to-video Models
+              </h1>
+          </div>
+          <!-- <div class="is-size-5 publication-authors"> -->
+            <!-- <span class="author-block"> -->
+              <!-- <a target="_blank" rel="noopener noreferrer" href="https://icecherylxuli.github.io/">Li Xu</a><sup> 1</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
+            <!-- <span class="author-block"> -->
+              <!-- <a target="_blank" rel="noopener noreferrer" >Shaodi You</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <!-- </span> -->
+            <!-- <span class="author-block"> -->
+              <!-- <a target="_blank" rel="noopener noreferrer" >Gang He </a><sup>† 1</sup> -->
+            <!-- </span> -->
+            <!-- <span class="author-block"> -->
+              <!-- <a target="_blank" rel="noopener noreferrer" >Yunsong Li </a><sup>1</sup> -->
+            <!-- </span> -->
+          <!-- </div> -->
+
+
+          <!-- <div class="is-size-5 publication-authors"> -->
+            <!-- <span class="author-block"><sup>1</sup>Xidian University</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+          <!-- </div> -->
+          <!-- <div class="is-size-5 publication-authors"> -->
+            <!-- <span class="author-block"><sup>2</sup>University of Amsterdam</span> -->
+          <!-- </div> -->
+          <!-- <div class="is-size-5 publication-authors"> -->
+            <!-- <span class="author-block"> <sup>†</sup>Corresponding authors</span> -->
+            <!-- <span class="author-block"><sup>†</sup>Corresponding author</span> -->
+          <!-- </div> -->
+          <!-- <div class="is-size-5 publication-authors"> -->
+            <!-- <span class="author-block", style="color:#346dc2">IEEE Transactions on Intelligent Vehicles </span> -->
+          <!-- </div> -->
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section" align="center">
+  <div class="container is-widescreen">
+    <h2 class="title is-3 no-bottom">Demo</h2>
+      <div class="video-container" align="center">
+        <a onclick="togglePlay()">
+          <video class="video" id="viz_input" loop muted src="./static/video/video_demo.mp4" onloadeddata="initVideo()"></video>
+          <canvas height=0 class="videoMerge" id="viz_inputMerge"></canvas>
+        </a>
+      </div>
+  </div>
+</section> -->
+
+
+
+
+<script>
+bulmaCarousel.attach('#results-carousel', {
+  slidesToShow: 2,
+  loop: true,
+  pagination: false,
+});
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified" style="font-size: 18px;">
+          <p>
+            Our model is able to understand complex semantics and also create expressive visual content. We are actively iterating and optimizing the technology. In the future, our goal is to further improve video coherence and detail.  At the same time, we are also working to give the model professional-level control over the camera, so that each shot can accurately convey the creator's intent.
+          </p>
+
+          <p>
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <section class="section" align="center">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 no-bottom">Videos</h2>
+        <div class="video-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+          <!-- 第一个视频 -->
+          <div style="margin: 10px; width: 45%;">
+            <video class="video" id="viz_input1" loop muted src="./static/video/video2.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge1"></canvas>
+            </video>
+            <p class="video-description">prompt: a green bird.</p>
+          </div>
+          <!-- 第二个视频 -->
+          <div style="margin: 10px; width: 45%;">
+            <video class="video" id="viz_input2" loop muted src="./static/video/video3.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge2"></canvas>
+            </video>
+            <p class="video-description">prompt: an airplane taking off</p>
+          </div>
+          <!-- 第7个视频 -->
+          <div style="margin: 10px; width: 92%;">
+            <video class="video" id="viz_input4" loop muted src="./static/video/video7.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge4"></canvas>
+            </video>
+            <p class="video-description">prompt: In a neon-lit Parisian café, a panda, dressed in a sleek, futuristic leather jacket with glowing blue accents, sits at a high-tech table. The café's interior is adorned with holographic art and vibrant, pulsating lights, casting a surreal glow. The panda, with cybernetic enhancements visible on its fur, lifts a steaming cup of coffee, the steam swirling with iridescent colors. Outside the window, the Eiffel Tower is illuminated with neon lights, blending the classic Parisian skyline with a cyberpunk aesthetic. The panda's reflective sunglasses catch the café's neon hues, creating a mesmerizing, otherworldly scene.</p>
+          </div>
+          <!-- 第三个视频 -->
+          <div style="margin: 10px; width: 45%;">
+            <video class="video" id="viz_input3" loop muted src="./static/video/video1.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge3"></canvas>
+            </video>
+            <p class="video-description">prompt: a horse bending down to drink water from a river</p>
+          </div>
+          <!-- 第四个视频 -->
+          <div style="margin: 10px; width: 45%;">
+            <video class="video" id="viz_input4" loop muted src="./static/video/video5.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge4"></canvas>
+            </video>
+            <p class="video-description">prompt: A tropical beach at sunrise, with palm trees and crystal-clear water in the foreground.</p>
+          </div>
+          <!-- 第8个视频 -->
+          <div style="margin: 10px; width: 92%;">
+            <video class="video" id="viz_input4" loop muted src="./static/video/video8.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge4"></canvas>
+            </video>
+            <p class="video-description">prompt: In a breathtaking fantasy landscape, towering crystal mountains shimmer under a sky painted with swirling auroras of green and purple. A serene, emerald lake reflects the vibrant colors, while bioluminescent plants and flowers glow softly along its shores. Majestic, winged creatures soar gracefully above, their feathers glinting in the ethereal light. Ancient, twisted trees with golden leaves line a cobblestone path that winds through the scene, leading to a grand, floating castle in the distance, its spires reaching towards the heavens. The air is filled with the gentle hum of magic, creating an atmosphere of wonder and enchantment.</p>
+          </div>
+          <!-- 第5个视频 -->
+          <div style="margin: 10px; width: 45%;">
+            <video class="video" id="viz_input4" loop muted src="./static/video/video6.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge4"></canvas>
+            </video>
+            <p class="video-description">prompt: a dog playing in park.</p>
+          </div>
+          <!-- 第6个视频 -->
+          <div style="margin: 10px; width: 45%;">
+            <video class="video" id="viz_input4" loop muted src="./static/video/video4.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge4"></canvas>
+            </video>
+            <p class="video-description">prompt: Yoda playing guitar on the stage.</p>
+
+            </div>
+          <!-- 第9个视频 -->
+          <div style="margin: 10px; width: 92%;">
+            <video class="video" id="viz_input4" loop muted src="./static/video/video9.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge4"></canvas>
+            </video>
+            <p class="video-description">prompt: Soaring through a breathtaking fantasy realm, the journey begins over lush, emerald forests with towering, ancient trees whose leaves shimmer with a golden hue. The scene transitions to a majestic mountain range, where snow-capped peaks pierce the sky, and mystical creatures like dragons and griffins glide gracefully alongside. Next, the flight sweeps over a vast, crystalline lake, its waters reflecting a sky filled with vibrant, swirling auroras. The adventure continues through a sprawling, enchanted city with towering spires and glowing, floating islands, where magical beings roam the streets. Finally, the journey concludes in a serene, otherworldly meadow, bathed in the soft light of twin moons, with bioluminescent flowers illuminating the landscape in a mesmerizing dance of colors.</p>
+          </div>
+           <!-- 第五个较大视频，跨整行 -->
+          <!-- <div style="margin: 10px; width: 92%;">
+            <video class="video" id="viz_input3" loop muted src="./static/video/video5.mp4" controls>
+              <canvas height=0 class="videoMerge" id="viz_inputMerge3"></canvas>
+            </video>
+            <p class="video-description">prompt : a breathtaking aerial view of a river meandering through a lush green landscape. the river, appearing as a dark ribbon, cuts through the verdant fields and hills, reflecting the soft light of the pinkish-orange sky. the sky, painted in hues of pink and orange, suggests the time of day to be either sunrise or sunset. the landscape is dotted with trees and bushes, adding to the natural beauty of the scene. the perspective of the video is from above, providing a bird's eye view of the river and the surrounding landscape. the colors , the river, the landscape, and the sky all come together to create a serene and picturesque scene.。</p>
+          </div> -->
+        </div>
+      </div>
+    </section>
+    
+    
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.bilibili.com/video/BV1tT42117t4/"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<!-- 
+<section class="section">
+  <div class="container is-widescreen">
+    <h2 class="title is-3">Network Architecture</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <image src="./static/image/ijcaiimage.png" class="img-responsive" alt="DDNeRF_Architecture_v21"><br>
+        <div class="content has-text-justified">
+          <p>
+            <b>Top:</b> The architecture of PGTformer. <br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-widescreen">
+    <h2 class="title is-3">Quantitative Results</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <image src="./static/image/tableimage.png" class="img-responsive" alt="DDNeRF_Architecture_v21"><br>
+        <div class="content has-text-justified">
+          <p>
+            Quantitative comparison on VFHQ Blind setting.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-widescreen">
+      <h2 class="title is-3">Qualitative Results</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full">
+          <image src="./static/image/figresult.png" class="img-responsive" alt="DDNeRF_Architecture_v21"><br>
+          <div class="content has-text-justified">
+            <p>
+             Visual comparison results of different methods.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+<section class="section">
+  <div class="container is-widescreen">
+    Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Acknowledgement</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            This Research is Supported by the National Key Research and Development Program from the Ministry of Science and Technology of the PRC (No.2021ZD0110600), Sichuan Science and Technology Program (No.2022ZYD0116), Sichuan Provincial M. C. Integration Office Program, and IEDA Laboratory of SWUST, Grant CEIEC-2022-ZM02-0247. Thanks to Dr. Li Xu and Gang He for their constructive suggestions on this paper.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+  </div>
+</section>
+
+
+
+<footer class="footer">
+</footer>
+</body>
+</html>
