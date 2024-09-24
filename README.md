@@ -1,12 +1,12 @@
-<table class="center">
+<table class="center" style="margin: 0 auto; text-align: center;">
   <!-- 第一行：两个 .gif -->
   <tr>
     <td style="text-align: center;"><img src="static/gif/video2.gif" width="90%"></td>
     <td style="text-align: center;"><img src="static/gif/video3.gif" width="90%"></td>
   </tr>
   <tr>
-    <td>a green bird.</td>
-    <td>an airplane taking off.</td>
+    <td style="text-align: center;">a green bird.</td>
+    <td style="text-align: center;">an airplane taking off.</td>
   </tr>
 
   <!-- 第二行：一个大的 .gif -->
