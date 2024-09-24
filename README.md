@@ -1,8 +1,8 @@
 <table class="center">
   <!-- 第一行：两个 .gif -->
   <tr>
-    <td><img src="static/gif/video2.gif" width="45%"></td>
-    <td><img src="static/gif/video3.gif" width="45%"></td>
+    <td><img src="static/gif/video2.gif" width="70%"></td>
+    <td><img src="static/gif/video3.gif" width="70%"></td>
   </tr>
   <tr>
     <td>a green bird.</td>
