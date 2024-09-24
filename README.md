@@ -1,8 +1,8 @@
 <table class="center">
   <!-- 第一行：两个 .gif -->
   <tr>
-    <td><img src="static/gif/video2.gif" width="70%"></td>
-    <td><img src="static/gif/video3.gif" width="70%"></td>
+    <td><img src="static/gif/video2.gif" width="90%"></td>
+    <td><img src="static/gif/video3.gif" width="90%"></td>
   </tr>
   <tr>
     <td>a green bird.</td>
@@ -19,8 +19,8 @@
 
   <!-- 第三行：两个 .gif -->
   <tr>
-    <td><img src="static/gif/video1.gif" width="45%"></td>
-    <td><img src="static/gif/video5.gif" width="45%"></td>
+    <td><img src="static/gif/video1.gif" width="90%"></td>
+    <td><img src="static/gif/video5.gif" width="90%"></td>
   </tr>
   <tr>
     <td>a horse bending down to drink water from a river.</td>
@@ -37,8 +37,8 @@
 
   <!-- 第五行：两个 .gif -->
   <tr>
-    <td><img src="static/gif/video6.gif" width="45%"></td>
-    <td><img src="static/gif/video4.gif" width="45%"></td>
+    <td><img src="static/gif/video6.gif" width="90%"></td>
+    <td><img src="static/gif/video4.gif" width="90%"></td>
   </tr>
   <tr>
     <td>a dog playing in park.</td>
